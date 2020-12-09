@@ -1,0 +1,292 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+/*
+  -- BASE --
+  Tag definitions
+*/
+@layer base {
+  html,
+  body {
+    @apply font-defaultFont font-normal text-gray-700 text-100 text-left leading-normal antialiased;
+  }
+  h1,
+  .as-h1 {
+    @apply font-headerFont font-black text-gray-900 text-300 m-0 px-0 pt-16 pb-6;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .offerings-container h1 {
+    @apply p-0;
+  }
+  h2,
+  .as-h2 {
+    @apply font-headerFont font-black text-gray-800 text-200 mt-6 mb-8;
+  }
+  .as-h2-point-5 {
+    @apply font-headerFont font-black text-gray-800 text-175 mt-6 mb-8;
+  }
+  h3,
+  .as-h3 {
+    @apply font-headerFont font-black mt-4 mb-6 text-gray-800 text-150;
+  }
+  h4,
+  .as-h4 {
+    @apply font-headerFont font-bold mt-3 mb-4 text-125;
+  }
+
+  a {
+    @apply text-gray-800 !important;
+    @apply underline;
+  }
+
+  p {
+    @apply py-2;
+    font-size: 1rem;
+  }
+
+  img {
+    @apply w-full;
+  }
+  .st-sticky-share-buttons img {
+    display: inline;
+  }
+
+  /* Tables */
+  table {
+    @apply w-full mt-4;
+    border-top: 2px solid theme('colors.gray.200');
+    border-bottom: 2px solid theme('colors.gray.200');
+  }
+
+  thead {
+    border-bottom: 1px solid theme('colors.gray.300');
+  }
+
+  tbody tr:nth-child(odd) {
+    @apply bg-gray-100;
+  }
+  tbody tr:nth-child(even) {
+    @apply bg-white;
+  }
+
+  tr {
+    @apply w-full;
+  }
+
+  th {
+    @apply px-2 py-2 bg-transparent;
+    width: auto;
+  }
+
+  td {
+    @apply px-2 py-2 bg-transparent;
+    width: auto;
+  }
+  /* td:first-child {
+    @apply pt-4;
+  } */
+
+  /* Lists */
+
+  ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+  li {
+    @apply px-0 py-1 leading-snug;
+  }
+
+  ul.with-dashes {
+    border-top: 1px dashed rgba(0, 0, 0, 0);
+    border-bottom: 1px dashed rgba(0, 0, 0, 0);
+    margin: 0.5rem 1rem;
+    padding: 1rem 0 0.5rem 0;
+    list-style: none;
+    text-indent: -1rem;
+  }
+  ul.with-dashes > li {
+    padding: 0;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    margin: 0;
+    font-size: 0.87rem;
+  }
+
+  ul.with-dashes > li:before {
+    content: '★';
+    display: inline-block;
+    padding-left: 1rem;
+    position: relative;
+    left: -5px;
+  }
+
+  /* Forms */
+
+  input,
+  textarea {
+    @apply px-2 pt-2 pb-1 rounded-sm bg-white border border-gray-200;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
+
+  label {
+    @apply px-2 pt-2 pb-1 cursor-pointer text-gray-800;
+  }
+}
+
+/*
+  -- COMPONENTS --
+  NOTE - these are general classes, defined in Tailwind terms.
+*/
+@layer components {
+  /* Grid */
+  .bb-container {
+    @apply justify-center mx-auto;
+  }
+  .row {
+    @apply grid grid-cols-12 gap-4 justify-center px-2 py-8;
+  }
+
+  .no-top {
+    @apply mt-0 pt-0;
+  }
+
+  .elevation-2 {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !important;
+  }
+
+  /* Shapes */
+  .circle {
+    @apply rounded-full h-12 w-12 flex items-center justify-center;
+  }
+  .circle-lg {
+    @apply rounded-full h-16 w-16 flex items-center justify-center;
+  }
+  .square {
+    @apply h-12 w-12 flex items-center justify-center;
+  }
+
+  /* Forms */
+  .btn {
+    @apply relative uppercase px-4 rounded font-navFont leading-tight;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transform: scale(1, 1);
+    transition: transform 0.1s ease-out;
+    outline: none;
+  }
+  .btn:active {
+    transform: scale(0.96, 0.96);
+    outline: none;
+  }
+  .btn:focus {
+    outline: none;
+  }
+  .btn-outline {
+    @apply text-gray-700 bg-transparent border-gray-400 border-solid border;
+  }
+
+  .btn-bbpink {
+    @apply bg-bbpink-500 text-white border-transparent;
+  }
+  .btn-bbpink:hover {
+    @apply bg-bbpink-300;
+  }
+
+  .btn-circle {
+    @apply circle px-0 py-0 shadow-md;
+  }
+  .btn-square {
+    @apply square text-200;
+    line-height: 2rem;
+  }
+
+  .relative-label-wrapper {
+    @apply relative mb-4;
+  }
+
+  .relative-input {
+    @apply relative text-gray-800 border-l-2 block w-full appearance-none;
+  }
+
+  .relative-label {
+    @apply absolute top-0 left-0 duration-300;
+    transform: translate(0, 0) scale(1, 1);
+    transform-origin: left;
+  }
+
+  /* input:not(:placeholder-shown) ~ label,
+  textarea:not(:placeholder-shown) ~ label, */
+  input:focus ~ label,
+  textarea:focus ~ label,
+  input:focus-within ~ label,
+  textarea:focus-within ~ label,
+  input.errors ~ label,
+  input.valid ~ label,
+  textarea.errors ~ label,
+  textarea.valid ~ label {
+    transform: translate(6px, -1.5rem) scale(0.7);
+    transform-origin: left;
+  }
+
+  input:focus ~ label,
+  textarea:focus ~ label,
+  input:focus-within ~ label,
+  textarea:focus-within ~ label {
+    @apply text-gray-900;
+  }
+
+  /* Validation */
+  .errors {
+    @apply border-red-800;
+    @apply bg-red-100 !important;
+    border-top: transparent;
+    border-right: transparent;
+    border-bottom: transparent;
+  }
+  .valid {
+    @apply border-green-700;
+    @apply bg-green-100 !important;
+    border-top: transparent;
+    border-right: transparent;
+    border-bottom: transparent;
+  }
+  input:-internal-autofill-selected.valid {
+    background-color: #f0fff4 !important;
+  }
+  .valid ~ label::after {
+    @apply absolute block right-0 z-10 text-green-700 w-4 h-4 p-0 m-0;
+    transform: translate(1rem, -1.25rem) scale(1, 1);
+    transform-origin: left;
+    content: '✓';
+  }
+  .filled-in {
+    @apply border-gray-200 bg-white;
+  }
+
+  /* Disable autofill highlighting on Chrome and Safari etc */
+  input:-webkit-autofill {
+    --text-input-color: theme('colors.gray.900');
+    --page-background-color: #fff;
+    -webkit-text-fill-color: var(--text-input-color) !important;
+    -webkit-box-shadow: 0 0 0 1rem var(--page-background-color) inset !important;
+    background-clip: content-box !important;
+  }
+  input:-webkit-autofill.valid {
+    --text-input-color: theme('colors.gray.900');
+    --page-background-color: #f0fff4;
+    -webkit-text-fill-color: var(--text-input-color) !important;
+    -webkit-box-shadow: 0 0 0 1rem var(--page-background-color) inset !important;
+    background-clip: content-box !important;
+  }
+}

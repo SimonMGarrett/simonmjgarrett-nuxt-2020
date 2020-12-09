@@ -1,70 +1,49 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">simonmjgarrett</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+  <div class="bb-container">
+    <div class="row">
+      <div
+        v-for="(aObj, aKey) in articles"
+        :key="aKey"
+        class="col-span-12 md:col-span-6 lg:col-span-4 elevation-2"
+      >
+        <nuxt-link
+          class="text-gray-700 no-underline"
+          :to="`/articles/${aObj.slug}`"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+          <img :src="aObj.img" :alt="aObj.title" />
+          <div class="tags text-gray-600 text-75 m-0 px-4 py-3">tags</div>
+          <div class="as-h4 m-0 px-4 py-0">{{ aObj.title }}</div>
+          <div class="text-87 m-0 px-4 pt-0 pb-3">{{ aObj.description }}</div>
+          <!-- <Avatar /> -->
+          <div class="px-2">
+            <avatar :article="aObj" />
+          </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return { articles: null }
+  },
+  created() {
+    this.getArticles()
+    console.log('this', this) // eslint-disable-line no-console
+  },
+  methods: {
+    getArticles() {
+      this.$content('articles')
+        .fetch()
+        .then((articles) => {
+          console.log('----- articles', articles) // eslint-disable-line no-console
+          return (this.articles = articles)
+        })
+    },
+  },
+})
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
